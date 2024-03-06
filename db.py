@@ -37,16 +37,17 @@ def insert_product_reviews():
 
 
 def insert_most_reviewed_products():
-    query = "INSERT INTO Products_Most_Reviewed (asin, review_count, average_rating) VALUES (%s,%s,%s,%s)"
+    query = "INSERT INTO Products_Most_Reviewed (asin, review_count, average_rating) VALUES (%s,%s,%s)"
     row_count = 0
-    for index, row in create_df_cleaned_data().iterrows():
-        values = (row['overall'], row['verified'], row['reviewTime'], row['reviewerID'], row['asin'], row['reviewText'], row['summary'], row['vote'], row['reviewLength'], row['summaryLength'])
+    for index, row in most_reviewd_products().iterrows():
+        values = (row['asin'], row['review_count'], row['average_rating'])
+        # print(values)
         cur.execute(query, values)
         row_count += 1
     
     logging.info(f"{row_count} rows inserted into table Products_Most_Reviewed")
 
-insert_product_reviews()
+
 
 
 # Commit the changes
