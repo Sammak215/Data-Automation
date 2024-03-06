@@ -3,7 +3,6 @@ import numpy as np
 from bs4 import BeautifulSoup
 # import psycopg2
 
-
 from IPython.display import display
 
 def remove_html_tags(text):
